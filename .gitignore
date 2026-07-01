@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+.venv/
+dataset/
+gazemap_build_log.md
+gazemap_build_plan_v3.md
