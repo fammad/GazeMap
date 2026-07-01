@@ -1,5 +1,7 @@
 __pycache__/
 *.pyc
+*.pt
+*.pth
 .venv/
 dataset/
 gazemap_build_log.md
