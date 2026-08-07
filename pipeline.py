@@ -27,15 +27,16 @@ class GazeCNN(nn.Module):
         x = self.fc2(x)
         return x
 
-mat_path = "./dataset/Data/Normalized/p00/day01.mat"
-dataset = GazeDataset(mat_path)
-loader = DataLoader(dataset, batch_size=16, shuffle=False)
-images, labels = next(iter(loader))
+if __name__ == "__main__":
+    mat_path = "./dataset/Data/Normalized/p00/day01.mat"
+    dataset = GazeDataset(mat_path)
+    loader = DataLoader(dataset, batch_size=16, shuffle=False)
+    images, labels = next(iter(loader))
 
-net = GazeCNN()
-out = net(images)
+    net = GazeCNN()
+    out = net(images)
 
-print(out.shape)
+    print(out.shape)
  
 
 
