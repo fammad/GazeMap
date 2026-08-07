@@ -5,3 +5,4 @@ __pycache__/
 gazemap-env/
 dataset/
 .DS_Store
+playground.py
