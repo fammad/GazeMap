@@ -27,18 +27,18 @@ class GazeDataset(Dataset):
     
     
 
-#Testing
-mat_path = "./dataset/Data/Normalized/p00/day01.mat"
+if __name__ == "__main__":
+    mat_path = "./dataset/Data/Normalized/p00/day01.mat"
 
-dataset = GazeDataset(mat_path)
+    dataset = GazeDataset(mat_path)
 
-print(len(dataset))
+    print(len(dataset))
 
-img, label = dataset[0]
-print(img.shape, img.dtype)
-print(label.shape)
+    img, label = dataset[0]
+    print(img.shape, img.dtype)
+    print(label.shape)
 
-loader = DataLoader(dataset, batch_size=16, shuffle=False)
+    loader = DataLoader(dataset, batch_size=16, shuffle=False)
 
-images, labels = next(iter(loader))
-print(images.shape, labels.shape)
+    images, labels = next(iter(loader))
+    print(images.shape, labels.shape)
