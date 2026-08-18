@@ -4,7 +4,9 @@ from torch.utils.data import DataLoader, random_split
 
 from dataset import GazeDataset
 from pipeline import GazeCNN
+from metrics import angular_error_degrees
 
+torch.manual_seed(42)
 
 mat_path = "./dataset/Data/Normalized/p00/day01.mat"
 full_dataset = GazeDataset(mat_path)
@@ -42,18 +44,25 @@ for epoch in range(5):
     train_average = train_total / len(train_loader)
 
     model.eval()
-    validation_total = 0.0
+    all_sq_errors = []
+    all_errors = []
 
     with torch.no_grad():
         for images, labels in validation_loader:
             predictions = model(images)
-            loss = loss_fn(predictions, labels)
-            validation_total += loss.item()
 
-    validation_average = validation_total / len(validation_loader)
+            sq_errors = ((predictions - labels) ** 2).mean(dim=1)
+            all_sq_errors.append(sq_errors)
+
+            errors = angular_error_degrees(predictions, labels)
+            all_errors.append(errors)
+
+    validation_mse = torch.cat(all_sq_errors).mean()
+    validation_mae = torch.cat(all_errors).mean()
 
     print(
         f"Epoch {epoch + 1}/5 | "
         f"train loss: {train_average:.4f} | "
-        f"validation loss: {validation_average:.4f}"
+        f"validation MSE: {validation_mse:.4f} | "
+        f"validation MAE: {validation_mae:.2f} deg"
     )
