@@ -2,9 +2,11 @@
 
 GazeMap takes normalized eye images, predicts pitch and yaw gaze angles, and evaluates the predictions using mean angular error in degrees.
 
-**Status:** Working single-subject CNN baseline; evaluation is currently limited to a random split of p00/day01, so leave-one-person-out testing is not implemented yet.
+**Status:** Working CNN baseline with both within-person and leave-one-person-out evaluation. The within-person result is an optimistic baseline; the LOPO result is the primary person-independent evaluation.
 
-## Result
+## Results
+
+### Within-person baseline
 
 Mean angular error: **4.01°**
 
@@ -16,16 +18,36 @@ Mean angular error: **4.01°**
 | Training | Adam lr 1e-3, batch 16, MSELoss, 5 epochs |
 | Hardware | CPU (M1) |
 
-The frames are sampled from continuous recordings, so neighboring frames often show nearly the same eye appearance and gaze direction. Because the split is random, near-duplicate frames can be placed in both training and validation, allowing the model to be evaluated on images that closely resemble images it has already seen.
+The frames come from continuous recordings, so neighboring frames often have very similar eye appearance and gaze direction. A random split can therefore place near-duplicate frames in both training and validation. The 4.01° result is a single optimistic within-person baseline, not a person-independent performance claim.
 
-The change from 3.62° (unseeded) to 4.01° (seed 42) shows that this estimate has noticeable run-to-run sensitivity, so 4.01° should be treated as a single baseline observation rather than a stable performance claim.
+### Leave-one-person-out evaluation
 
-## What this number is not
+Mean angular error across 15 held-out people: **6.77°**
 
-ZZhang et al. report leave-one-person-out MPIIGaze errors ranging from 5.5° for their best method to 8.7° for simpler baselines. Their CNN-based GazeNet result is approximately 6.3° in this person-independent setting. These values are not directly comparable with GazeMap’s current 4.01° result because GazeMap currently uses a random split from one person and one day.
- However, I do not interpret the gap as evidence that this small CNN is better than those models, because my evaluation uses a random split from one subject and one recording day, allowing highly similar frames to appear on both sides of the split. The warning sign is that the error fell to 2.15° after 50 epochs while the training loss reached 0.0003: the model improved as it increasingly memorized the session, which indicates that the split—not necessarily the model’s ability to generalize—was driving the unusually low error.
+| | |
+|---|---|
+| Data | MPIIGaze, subjects p00–p14 |
+| Split | Leave one entire person out for testing; train on the other 14 |
+| Model | Same 2-convolution-layer CNN |
+| Training | Adam lr 1e-3, batch 128, MSELoss, 5 fixed epochs per fold |
+| Hardware | Apple Silicon MPS GPU |
+| Standard deviation | 1.03° |
+| Fold range | 4.12°–8.46° |
 
-**Prediction:** Leave-one-person-out evaluation will increase the error to approximately 6.5°, because the model will no longer see that person’s eye shape, skin appearance, camera conditions, or recording-specific visual patterns during training.
+The LOPO result is the primary result because the test person is never included in training. The model generalizes to unseen people, but performance varies by person: the easiest fold was p00 at 4.12°, and the hardest was p07 at 8.46°.
 
+## What the baseline means
 
-**Note:** We cite person-independent MPIIGaze results obtained with leave-one-person-out cross-validation. Zhang et al. report ~6.3° mean angular error in this setting, and later works report errors in the 5–6° range depending on architecture. Our LOPO prediction of ~6.5° is intentionally conservative given our small model and limited training data.
+The difference between 4.01° and 6.77° shows the generalization gap between a random within-person split and a person-independent test. The lower random-split error was helped by repeated visual conditions and similar neighboring frames; it should not be interpreted as evidence that this small CNN outperforms published person-independent methods.
+
+The LOPO result was close to the pre-experiment prediction of approximately 6.5°. The observed mean was 0.27° higher. Some folds reached their lowest test error before epoch 5, but the final comparison reports epoch 5 for every fold because choosing the best epoch using the held-out person would let the test set influence model selection.
+
+## Published comparison
+
+Zhang et al., *MPIIGaze: Real-World Dataset and Deep Appearance-Based Gaze Estimation* (TPAMI, arXiv:1711.09017), report leave-one-person-out MPIIGaze errors ranging from approximately **5.5° for GazeNet**, their best method, to **8.7° for simpler baselines**. Their **MnistNet** result is approximately **6.3°**. These results are not directly comparable in every implementation detail, but GazeMap’s 6.77° LOPO result is within the reported range for person-independent baselines.
+
+## Scope and next analysis
+
+GazeMap estimates gaze direction from an eye image. It does not estimate screen point-of-gaze, perform user calibration, or provide a real-time application.
+
+The next analysis will test whether the error differences are associated with head pose rather than only with gaze angle. It will use the dataset’s pose metadata and compare error across pose groups while checking gaze-angle distributions as a possible confound.
