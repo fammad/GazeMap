@@ -51,6 +51,8 @@ Five epochs were a fixed compute budget, not a convergence claim. Several folds 
 
 MPS results can vary slightly between reruns and hardware because numerical execution is not fully deterministic. The reported 6.35° is the observed result for this fixed configuration, not a universal exact constant.
 
+A rerun on 2026-10-06 with the identical configuration gave a person-equal MAE of 6.34° (pooled 6.05°), within 0.01° of the reported value. Individual folds moved by up to 0.48° (p00: 4.12° to 3.64°), so the aggregate is reproducible but the per-subject ranking is not. The pose and robustness analyses below use this rerun's per-sample errors and saved fold models. The original per-fold results are kept in `lopo_results_2026-09-17.csv`.
+
 ## Prediction check
 
 Before running LOPO, I predicted a mean error of approximately **6.50°**, based on the published MPIIGaze LOPO baselines and the limited capacity of this small CNN. The observed mean was **6.35°**, a difference of **0.15°**, or approximately **0.63 standard errors**. The prediction was therefore within the noise of the final estimate.
