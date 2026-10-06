@@ -63,10 +63,37 @@ This result is in the range of published person-independent MPIIGaze baselines. 
 
 Zhang et al., *MPIIGaze: Real-World Dataset and Deep Appearance-Based Gaze Estimation* (TPAMI, arXiv:1711.09017), report leave-one-person-out MPIIGaze errors ranging from approximately **5.5° for GazeNet**, their best method, to **8.7° for simpler baselines**. Their **MnistNet** result is approximately **6.3°**. GazeMap’s 6.35° is within this published LOPO baseline range, but the result is not a direct architecture-to-architecture comparison.
 
+## Head-pose analysis
+
+Does the error depend on how far the head is turned away from the camera? For every LOPO test sample, the head pose (a rotation vector in the normalized data) was converted into one number: the angle between the direction the face points and the camera axis. Samples were grouped into 10° bins. The last bin is 40° and above, because past about 45° only a few people have data.
+
+![LOPO error by head pose](pose_error.png)
+
+| Head rotation | Samples | People | Person-equal MAE | Pooled MAE | Mean gaze angle |
+|---|---|---|---|---|---|
+| 0-10° | 51,921 | 14 | 6.17° | 5.48° | 11.6° |
+| 10-20° | 78,351 | 15 | 6.25° | 5.81° | 12.5° |
+| 20-30° | 57,834 | 15 | 6.56° | 6.16° | 12.8° |
+| 30-40° | 21,287 | 14 | 7.78° | 7.74° | 13.2° |
+| 40°+ | 4,265 | 12 | 7.74° | 7.61° | 12.6° |
+
+"People" counts subjects with at least 50 samples in the bin. Person-equal MAE is the primary number, for the same reason as in the LOPO result.
+
+Error stays close to 6.2° up to 20° of head rotation, rises slightly at 20-30°, and then steps up by about 1.2° beyond 30°.
+
+Two other explanations were checked:
+
+- **Gaze direction.** If turned-head samples also had more extreme gaze, gaze could explain the rise. The mean gaze angle changes by only about 1.6° across bins (11.6° to 13.2°), so this is unlikely to account for it.
+- **Subject mix.** Harder subjects might simply sit more turned. Within each person, error on turned samples (25° and above) was compared with error on frontal samples (below 10°). Error was higher when turned for 12 of 14 people. The exceptions were p07 and p12; p11 had too few frontal samples to compare.
+
+Only about 12% of all samples have the head turned 30° or more, so the model sees few such examples during training. That, and the more side-on view of the eye, are plausible reasons for the step, but this analysis does not separate them. It is an observational result within MPIIGaze, not a controlled experiment: it shows where the model is weaker, not exactly why.
+
+Reproduce with `python analyze_pose.py`. It reads `lopo_sample_results.csv` (written by `lopo_train_all_folds.py`, about 30 MB, not committed) and writes `pose_results.csv` and `pose_error.png`.
+
 ## Scope and next analysis
 
 GazeMap estimates gaze direction from an eye image. It does not estimate screen point-of-gaze, perform user calibration, or provide a real-time application.
 
-The next analysis will use the saved per-sample results to examine robustness across the dataset’s pose values. Pose and gaze direction may be correlated, so an increase in error at a particular pose cannot automatically be interpreted as a causal head-pose effect. The analysis will report pose-bin sample counts and check gaze-angle distributions as a possible confound.
+The next analysis tests robustness to cabin-like image conditions (brightness, blur, sensor noise and partial occlusion) by evaluating the saved fold models on corrupted test images, without retraining.
 
 Frame-stride subsampling was considered as a speed optimization but was not needed: the full-data evaluation completed in under half an hour after the cumulative-index lookup was improved. The reported LOPO result therefore uses all available frames.
