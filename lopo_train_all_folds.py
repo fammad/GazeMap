@@ -16,6 +16,7 @@ BASE = Path("./dataset/Data/Normalized")
 PEOPLE = [f"p{i:02d}" for i in range(15)]
 BATCH_SIZE = 128
 NUM_EPOCHS = 5
+MODELS_DIR = Path("models")
 
 
 def build_fold_files(test_person):
@@ -93,6 +94,8 @@ def main():
     fold_rows = []
     all_errors = []
     all_metadata = []
+
+    MODELS_DIR.mkdir(exist_ok=True)
 
     for test_person in PEOPLE:
         torch.manual_seed(SEED)
@@ -182,6 +185,10 @@ def main():
                 f"train loss: {train_average:.6f} | "
                 f"test MAE: {test_mae:.2f}°"
             )
+
+        model_path = MODELS_DIR / f"lopo_{test_person}.pt"
+        torch.save(model.state_dict(), model_path)
+        print(f"Saved model: {model_path}")
 
         final_errors, final_metadata = evaluate(
             model,
