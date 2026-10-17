@@ -1,8 +1,13 @@
 # GazeMap
 
-GazeMap predicts gaze direction—pitch and yaw—from normalized eye images. Performance is measured with mean angular error in degrees.
+GazeMap is a small CNN that predicts gaze direction (pitch and yaw) from a normalized 36×60 eye image, trained and evaluated on MPIIGaze. The point of the project is the evaluation: how well the model works on people it has never seen, and where it fails. Error is mean angular error in degrees.
 
-**Status:** The project now has a within-person baseline and a person-independent leave-one-person-out evaluation. The LOPO result is the primary result.
+## Key findings
+
+- **Unseen people: 6.35°** person-equal error with leave-one-person-out over 15 subjects (standard error about 0.24°). This is within the published MPIIGaze LOPO range of 5.5° to 8.7°, and close to the 6.5° I predicted before running it. A rerun reproduced it within 0.01°.
+- **A random frame split overstates accuracy.** The same model scores 4.01° when near-identical frames from one recording end up in both training and test.
+- **Head pose:** error stays near 6.2° up to 20° of head rotation and rises to about 7.8° beyond 30°. The trend holds within 12 of 14 people.
+- **Image conditions:** blur and sensor noise cost little (+0.8° and +1.4° at the strongest level). Low light is the weak point: at 20% brightness error doubles to 13.1°, for all 15 people. Covering the top 20-30% of the eye image adds 1.4-2.0°.
 
 ## Results
 
@@ -90,10 +95,58 @@ Only about 12% of all samples have the head turned 30° or more, so the model se
 
 Reproduce with `python analyze_pose.py`. It reads `lopo_sample_results.csv` (written by `lopo_train_all_folds.py`, about 30 MB, not committed) and writes `pose_results.csv` and `pose_error.png`.
 
-## Scope and next analysis
+## Cabin-condition robustness
+
+How does error change when the eye image degrades in ways an in-car camera might see? Each saved LOPO fold model was evaluated on its own held-out person after a synthetic corruption, at five severity levels. Nothing was retrained. Level 0 is the clean image; for every fold it reproduced the LOPO result within 0.05°, which confirms that each model was paired with the right person's data.
+
+| Condition | What it simulates | Severity levels 0 to 4 |
+|---|---|---|
+| Brightness | weaker illumination | pixel values × 1.0, 0.8, 0.6, 0.4, 0.2 |
+| Blur | motion or defocus | Gaussian σ = 0, 0.5, 1, 1.5, 2 px |
+| Noise | low-light sensor noise | Gaussian std = 0, 0.02, 0.05, 0.1, 0.2 (pixels scaled 0-1) |
+| Occlusion | eyelid, glasses frame, hair | top 0, 10, 20, 30, 40% of rows set to black |
+
+![One eye image at each severity level](robustness_examples.png)
+
+![LOPO error under image corruptions](robustness_error.png)
+
+Person-equal MAE:
+
+| Condition | Level 0 | Level 1 | Level 2 | Level 3 | Level 4 | People worse at level 4 |
+|---|---|---|---|---|---|---|
+| Brightness | 6.34° | 6.45° | 7.12° | 8.77° | 13.09° | 15 of 15 |
+| Occlusion | 6.34° | 6.55° | 7.74° | 8.34° | 8.27° | 15 of 15 |
+| Noise | 6.34° | 6.37° | 6.50° | 6.78° | 7.73° | 13 of 15 |
+| Blur | 6.34° | 6.33° | 6.45° | 6.77° | 7.18° | 13 of 15 |
+
+Level 0 is 6.34° rather than 6.35° because these are the rerun's models.
+
+- **Low light is the main weakness.** Mild dimming costs little, but at ×0.4 error reaches 8.77° and at ×0.2 it doubles to 13.09°, for every person. The easiest subject, p00, goes from 3.64° to 17.04°.
+- **Occlusion** adds about 1.4° once 20% of the image is covered, for every person, and then levels off.
+- **Noise and blur** degrade slowly. At the strongest noise level the image looks heavily corrupted, yet error rises by only 1.4°.
+
+The model tolerates losing fine detail far better than a global change in intensity. A plausible reason is that it was trained only on the dataset's brightness range and its input is not normalized per image, so a dark image falls outside what it learned. Per-image intensity normalization or brightness augmentation would be the first thing to try. Both need retraining, which was outside this project's scope.
+
+Reproduce with `python robustness.py`. It needs the fold models in `models/`, written by `lopo_train_all_folds.py`, and writes `robustness_results.csv`, `robustness_summary.csv` and both images.
+
+## Scope
 
 GazeMap estimates gaze direction from an eye image. It does not estimate screen point-of-gaze, perform user calibration, or provide a real-time application.
 
-The next analysis tests robustness to cabin-like image conditions (brightness, blur, sensor noise and partial occlusion) by evaluating the saved fold models on corrupted test images, without retraining.
-
 Frame-stride subsampling was considered as a speed optimization but was not needed: the full-data evaluation completed in under half an hour after the cumulative-index lookup was improved. The reported LOPO result therefore uses all available frames.
+
+## Limitations
+
+- One dataset: MPIIGaze, 15 people, laptop webcam, everyday indoor light. Results may not transfer to infrared in-car cameras.
+- Right-eye images only, no face or head-pose input, and a deliberately small CNN trained for a fixed 5 epochs.
+- The corruptions are synthetic. Real low light, motion blur and occlusion look different from these approximations.
+- The head-pose and robustness results are observational. They show where the model is weaker, not exactly why.
+- MPS execution is not fully deterministic. Single folds can move by about 0.5° between reruns; the 15-person mean moved by 0.01°.
+
+## Reproduce
+
+1. Download MPIIGaze and place it so that `dataset/Data/Normalized/p00` to `p14` exist.
+2. `python3 -m venv .gazemap-env`, activate it, then `pip install -r requirements.txt`.
+3. `python lopo_train_all_folds.py` trains the 15 fold models (about 30 minutes on an Apple M1 GPU) and writes `lopo_results.csv`, `lopo_sample_results.csv` and `models/`.
+4. `python analyze_pose.py` runs the head-pose analysis.
+5. `python robustness.py` runs the image-condition analysis.
