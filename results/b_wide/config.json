@@ -1,0 +1,14 @@
+{
+  "eyes": [
+    "right",
+    "left"
+  ],
+  "conv1": 20,
+  "conv2": 50,
+  "hidden": 500,
+  "head_pose": false,
+  "epochs": 5,
+  "lr": 0.001,
+  "batch_size": 128,
+  "lr_drop_epochs": []
+}

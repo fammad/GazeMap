@@ -1,0 +1,532 @@
+Using device: mps | people found: 15
+Loaded 427316 eye images in 6 s
+
+===== final =====
+{"eyes": ["right", "left"], "conv1": 20, "conv2": 50, "hidden": 500, "head_pose": true, "epochs": 15, "lr": 0.001, "batch_size": 128, "lr_drop_epochs": [10]}
+final p00 epoch 1/15 | train loss 0.004323 | test MAE 3.76°
+final p00 epoch 2/15 | train loss 0.002505 | test MAE 3.99°
+final p00 epoch 3/15 | train loss 0.002198 | test MAE 3.55°
+final p00 epoch 4/15 | train loss 0.002016 | test MAE 3.66°
+final p00 epoch 5/15 | train loss 0.001887 | test MAE 3.71°
+final p00 epoch 6/15 | train loss 0.001785 | test MAE 3.15°
+final p00 epoch 7/15 | train loss 0.001705 | test MAE 3.52°
+final p00 epoch 8/15 | train loss 0.001641 | test MAE 3.66°
+final p00 epoch 9/15 | train loss 0.001591 | test MAE 3.44°
+final p00 epoch 10/15 | train loss 0.001540 | test MAE 3.29°
+final p00 epoch 11/15 | train loss 0.001290 | test MAE 3.31°
+final p00 epoch 12/15 | train loss 0.001257 | test MAE 3.29°
+final p00 epoch 13/15 | train loss 0.001242 | test MAE 3.29°
+final p00 epoch 14/15 | train loss 0.001231 | test MAE 3.34°
+final p00 epoch 15/15 | train loss 0.001222 | test MAE 3.40°
+p00: MAE 3.40° (right eye 3.00°) | fold 8.1 min | about 113 min left for final
+final p01 epoch 1/15 | train loss 0.004072 | test MAE 5.32°
+final p01 epoch 2/15 | train loss 0.002369 | test MAE 4.51°
+final p01 epoch 3/15 | train loss 0.002043 | test MAE 5.78°
+final p01 epoch 4/15 | train loss 0.001867 | test MAE 5.89°
+final p01 epoch 5/15 | train loss 0.001736 | test MAE 6.22°
+final p01 epoch 6/15 | train loss 0.001641 | test MAE 5.86°
+final p01 epoch 7/15 | train loss 0.001568 | test MAE 5.66°
+final p01 epoch 8/15 | train loss 0.001508 | test MAE 5.62°
+final p01 epoch 9/15 | train loss 0.001453 | test MAE 5.62°
+final p01 epoch 10/15 | train loss 0.001405 | test MAE 5.90°
+final p01 epoch 11/15 | train loss 0.001152 | test MAE 5.66°
+final p01 epoch 12/15 | train loss 0.001117 | test MAE 5.55°
+final p01 epoch 13/15 | train loss 0.001102 | test MAE 5.80°
+final p01 epoch 14/15 | train loss 0.001090 | test MAE 5.72°
+final p01 epoch 15/15 | train loss 0.001079 | test MAE 5.68°
+p01: MAE 5.68° (right eye 4.24°) | fold 8.2 min | about 106 min left for final
+final p02 epoch 1/15 | train loss 0.004173 | test MAE 6.11°
+final p02 epoch 2/15 | train loss 0.002429 | test MAE 5.79°
+final p02 epoch 3/15 | train loss 0.002136 | test MAE 5.20°
+final p02 epoch 4/15 | train loss 0.001956 | test MAE 4.86°
+final p02 epoch 5/15 | train loss 0.001829 | test MAE 5.60°
+final p02 epoch 6/15 | train loss 0.001737 | test MAE 4.45°
+final p02 epoch 7/15 | train loss 0.001661 | test MAE 4.77°
+final p02 epoch 8/15 | train loss 0.001598 | test MAE 5.11°
+final p02 epoch 9/15 | train loss 0.001554 | test MAE 4.83°
+final p02 epoch 10/15 | train loss 0.001507 | test MAE 4.77°
+final p02 epoch 11/15 | train loss 0.001251 | test MAE 5.21°
+final p02 epoch 12/15 | train loss 0.001217 | test MAE 4.97°
+final p02 epoch 13/15 | train loss 0.001202 | test MAE 5.09°
+final p02 epoch 14/15 | train loss 0.001191 | test MAE 5.01°
+final p02 epoch 15/15 | train loss 0.001182 | test MAE 5.24°
+p02: MAE 5.24° (right eye 4.51°) | fold 8.1 min | about 98 min left for final
+final p03 epoch 1/15 | train loss 0.003811 | test MAE 6.04°
+final p03 epoch 2/15 | train loss 0.002187 | test MAE 6.07°
+final p03 epoch 3/15 | train loss 0.001867 | test MAE 5.69°
+final p03 epoch 4/15 | train loss 0.001691 | test MAE 5.70°
+final p03 epoch 5/15 | train loss 0.001576 | test MAE 5.75°
+final p03 epoch 6/15 | train loss 0.001491 | test MAE 5.79°
+final p03 epoch 7/15 | train loss 0.001422 | test MAE 5.97°
+final p03 epoch 8/15 | train loss 0.001370 | test MAE 5.95°
+final p03 epoch 9/15 | train loss 0.001327 | test MAE 5.71°
+final p03 epoch 10/15 | train loss 0.001292 | test MAE 5.97°
+final p03 epoch 11/15 | train loss 0.001065 | test MAE 5.97°
+final p03 epoch 12/15 | train loss 0.001036 | test MAE 5.99°
+final p03 epoch 13/15 | train loss 0.001023 | test MAE 5.99°
+final p03 epoch 14/15 | train loss 0.001012 | test MAE 5.98°
+final p03 epoch 15/15 | train loss 0.001004 | test MAE 6.08°
+p03: MAE 6.08° (right eye 6.20°) | fold 7.7 min | about 88 min left for final
+final p04 epoch 1/15 | train loss 0.004000 | test MAE 7.34°
+final p04 epoch 2/15 | train loss 0.002320 | test MAE 6.63°
+final p04 epoch 3/15 | train loss 0.001999 | test MAE 7.20°
+final p04 epoch 4/15 | train loss 0.001818 | test MAE 7.24°
+final p04 epoch 5/15 | train loss 0.001701 | test MAE 6.36°
+final p04 epoch 6/15 | train loss 0.001622 | test MAE 6.92°
+final p04 epoch 7/15 | train loss 0.001554 | test MAE 7.30°
+final p04 epoch 8/15 | train loss 0.001505 | test MAE 6.92°
+final p04 epoch 9/15 | train loss 0.001457 | test MAE 6.09°
+final p04 epoch 10/15 | train loss 0.001420 | test MAE 6.89°
+final p04 epoch 11/15 | train loss 0.001181 | test MAE 6.93°
+final p04 epoch 12/15 | train loss 0.001149 | test MAE 7.05°
+final p04 epoch 13/15 | train loss 0.001135 | test MAE 7.08°
+final p04 epoch 14/15 | train loss 0.001125 | test MAE 7.02°
+final p04 epoch 15/15 | train loss 0.001116 | test MAE 7.10°
+p04: MAE 7.10° (right eye 8.21°) | fold 8.5 min | about 81 min left for final
+final p05 epoch 1/15 | train loss 0.003797 | test MAE 6.59°
+final p05 epoch 2/15 | train loss 0.002244 | test MAE 6.54°
+final p05 epoch 3/15 | train loss 0.001935 | test MAE 6.51°
+final p05 epoch 4/15 | train loss 0.001753 | test MAE 6.21°
+final p05 epoch 5/15 | train loss 0.001627 | test MAE 6.40°
+final p05 epoch 6/15 | train loss 0.001535 | test MAE 6.48°
+final p05 epoch 7/15 | train loss 0.001471 | test MAE 6.46°
+final p05 epoch 8/15 | train loss 0.001413 | test MAE 6.56°
+final p05 epoch 9/15 | train loss 0.001372 | test MAE 6.62°
+final p05 epoch 10/15 | train loss 0.001325 | test MAE 6.69°
+final p05 epoch 11/15 | train loss 0.001090 | test MAE 6.53°
+final p05 epoch 12/15 | train loss 0.001057 | test MAE 6.56°
+final p05 epoch 13/15 | train loss 0.001043 | test MAE 6.55°
+final p05 epoch 14/15 | train loss 0.001031 | test MAE 6.59°
+final p05 epoch 15/15 | train loss 0.001022 | test MAE 6.50°
+p05: MAE 6.50° (right eye 6.96°) | fold 8.4 min | about 74 min left for final
+final p06 epoch 1/15 | train loss 0.003780 | test MAE 5.51°
+final p06 epoch 2/15 | train loss 0.002197 | test MAE 5.65°
+final p06 epoch 3/15 | train loss 0.001897 | test MAE 5.44°
+final p06 epoch 4/15 | train loss 0.001706 | test MAE 5.54°
+final p06 epoch 5/15 | train loss 0.001575 | test MAE 5.92°
+final p06 epoch 6/15 | train loss 0.001476 | test MAE 5.82°
+final p06 epoch 7/15 | train loss 0.001394 | test MAE 5.51°
+final p06 epoch 8/15 | train loss 0.001334 | test MAE 5.39°
+final p06 epoch 9/15 | train loss 0.001280 | test MAE 5.73°
+final p06 epoch 10/15 | train loss 0.001233 | test MAE 5.16°
+final p06 epoch 11/15 | train loss 0.000993 | test MAE 5.57°
+final p06 epoch 12/15 | train loss 0.000959 | test MAE 5.59°
+final p06 epoch 13/15 | train loss 0.000943 | test MAE 5.69°
+final p06 epoch 14/15 | train loss 0.000932 | test MAE 5.69°
+final p06 epoch 15/15 | train loss 0.000922 | test MAE 5.76°
+p06: MAE 5.76° (right eye 5.98°) | fold 8.2 min | about 65 min left for final
+final p07 epoch 1/15 | train loss 0.003685 | test MAE 7.04°
+final p07 epoch 2/15 | train loss 0.002055 | test MAE 7.00°
+final p07 epoch 3/15 | train loss 0.001756 | test MAE 6.72°
+final p07 epoch 4/15 | train loss 0.001599 | test MAE 6.95°
+final p07 epoch 5/15 | train loss 0.001487 | test MAE 6.88°
+final p07 epoch 6/15 | train loss 0.001407 | test MAE 6.43°
+final p07 epoch 7/15 | train loss 0.001348 | test MAE 6.65°
+final p07 epoch 8/15 | train loss 0.001291 | test MAE 6.87°
+final p07 epoch 9/15 | train loss 0.001247 | test MAE 7.49°
+final p07 epoch 10/15 | train loss 0.001209 | test MAE 6.64°
+final p07 epoch 11/15 | train loss 0.000991 | test MAE 6.85°
+final p07 epoch 12/15 | train loss 0.000962 | test MAE 6.95°
+final p07 epoch 13/15 | train loss 0.000949 | test MAE 6.96°
+final p07 epoch 14/15 | train loss 0.000938 | test MAE 6.96°
+final p07 epoch 15/15 | train loss 0.000930 | test MAE 6.94°
+p07: MAE 6.94° (right eye 7.22°) | fold 8.3 min | about 57 min left for final
+final p08 epoch 1/15 | train loss 0.003741 | test MAE 6.12°
+final p08 epoch 2/15 | train loss 0.002095 | test MAE 5.92°
+final p08 epoch 3/15 | train loss 0.001778 | test MAE 5.91°
+final p08 epoch 4/15 | train loss 0.001597 | test MAE 6.51°
+final p08 epoch 5/15 | train loss 0.001476 | test MAE 6.26°
+final p08 epoch 6/15 | train loss 0.001393 | test MAE 6.18°
+final p08 epoch 7/15 | train loss 0.001327 | test MAE 6.28°
+final p08 epoch 8/15 | train loss 0.001273 | test MAE 6.36°
+final p08 epoch 9/15 | train loss 0.001228 | test MAE 6.52°
+final p08 epoch 10/15 | train loss 0.001194 | test MAE 6.26°
+final p08 epoch 11/15 | train loss 0.000970 | test MAE 6.45°
+final p08 epoch 12/15 | train loss 0.000941 | test MAE 6.36°
+final p08 epoch 13/15 | train loss 0.000927 | test MAE 6.36°
+final p08 epoch 14/15 | train loss 0.000917 | test MAE 6.38°
+final p08 epoch 15/15 | train loss 0.000909 | test MAE 6.39°
+p08: MAE 6.39° (right eye 5.29°) | fold 8.5 min | about 49 min left for final
+final p09 epoch 1/15 | train loss 0.003835 | test MAE 6.75°
+final p09 epoch 2/15 | train loss 0.002217 | test MAE 7.00°
+final p09 epoch 3/15 | train loss 0.001940 | test MAE 7.40°
+final p09 epoch 4/15 | train loss 0.001781 | test MAE 6.67°
+final p09 epoch 5/15 | train loss 0.001676 | test MAE 7.31°
+final p09 epoch 6/15 | train loss 0.001591 | test MAE 7.65°
+final p09 epoch 7/15 | train loss 0.001526 | test MAE 6.72°
+final p09 epoch 8/15 | train loss 0.001472 | test MAE 6.30°
+final p09 epoch 9/15 | train loss 0.001428 | test MAE 6.63°
+final p09 epoch 10/15 | train loss 0.001392 | test MAE 6.60°
+final p09 epoch 11/15 | train loss 0.001161 | test MAE 6.86°
+final p09 epoch 12/15 | train loss 0.001132 | test MAE 6.74°
+final p09 epoch 13/15 | train loss 0.001120 | test MAE 6.98°
+final p09 epoch 14/15 | train loss 0.001110 | test MAE 6.83°
+final p09 epoch 15/15 | train loss 0.001101 | test MAE 6.81°
+p09: MAE 6.81° (right eye 5.50°) | fold 8.6 min | about 41 min left for final
+final p10 epoch 1/15 | train loss 0.003769 | test MAE 6.94°
+final p10 epoch 2/15 | train loss 0.002214 | test MAE 6.36°
+final p10 epoch 3/15 | train loss 0.001929 | test MAE 6.42°
+final p10 epoch 4/15 | train loss 0.001763 | test MAE 7.19°
+final p10 epoch 5/15 | train loss 0.001655 | test MAE 6.49°
+final p10 epoch 6/15 | train loss 0.001566 | test MAE 6.36°
+final p10 epoch 7/15 | train loss 0.001502 | test MAE 6.84°
+final p10 epoch 8/15 | train loss 0.001449 | test MAE 6.83°
+final p10 epoch 9/15 | train loss 0.001404 | test MAE 7.62°
+final p10 epoch 10/15 | train loss 0.001364 | test MAE 6.85°
+final p10 epoch 11/15 | train loss 0.001124 | test MAE 7.09°
+final p10 epoch 12/15 | train loss 0.001094 | test MAE 7.09°
+final p10 epoch 13/15 | train loss 0.001080 | test MAE 7.12°
+final p10 epoch 14/15 | train loss 0.001069 | test MAE 7.05°
+final p10 epoch 15/15 | train loss 0.001060 | test MAE 6.93°
+p10: MAE 6.93° (right eye 6.10°) | fold 8.8 min | about 33 min left for final
+final p11 epoch 1/15 | train loss 0.003820 | test MAE 5.89°
+final p11 epoch 2/15 | train loss 0.002252 | test MAE 6.14°
+final p11 epoch 3/15 | train loss 0.001962 | test MAE 5.87°
+final p11 epoch 4/15 | train loss 0.001797 | test MAE 5.71°
+final p11 epoch 5/15 | train loss 0.001684 | test MAE 6.28°
+final p11 epoch 6/15 | train loss 0.001594 | test MAE 5.80°
+final p11 epoch 7/15 | train loss 0.001530 | test MAE 5.37°
+final p11 epoch 8/15 | train loss 0.001476 | test MAE 5.24°
+final p11 epoch 9/15 | train loss 0.001431 | test MAE 5.31°
+final p11 epoch 10/15 | train loss 0.001395 | test MAE 5.81°
+final p11 epoch 11/15 | train loss 0.001156 | test MAE 5.74°
+final p11 epoch 12/15 | train loss 0.001127 | test MAE 5.87°
+final p11 epoch 13/15 | train loss 0.001112 | test MAE 5.82°
+final p11 epoch 14/15 | train loss 0.001102 | test MAE 6.12°
+final p11 epoch 15/15 | train loss 0.001094 | test MAE 5.90°
+p11: MAE 5.90° (right eye 5.65°) | fold 8.8 min | about 25 min left for final
+final p12 epoch 1/15 | train loss 0.003871 | test MAE 5.70°
+final p12 epoch 2/15 | train loss 0.002214 | test MAE 5.65°
+final p12 epoch 3/15 | train loss 0.001923 | test MAE 5.37°
+final p12 epoch 4/15 | train loss 0.001749 | test MAE 5.38°
+final p12 epoch 5/15 | train loss 0.001636 | test MAE 5.62°
+final p12 epoch 6/15 | train loss 0.001544 | test MAE 5.80°
+final p12 epoch 7/15 | train loss 0.001480 | test MAE 5.55°
+final p12 epoch 8/15 | train loss 0.001426 | test MAE 5.61°
+final p12 epoch 9/15 | train loss 0.001380 | test MAE 5.40°
+final p12 epoch 10/15 | train loss 0.001347 | test MAE 5.54°
+final p12 epoch 11/15 | train loss 0.001111 | test MAE 5.57°
+final p12 epoch 12/15 | train loss 0.001080 | test MAE 5.67°
+final p12 epoch 13/15 | train loss 0.001066 | test MAE 5.69°
+final p12 epoch 14/15 | train loss 0.001055 | test MAE 5.64°
+final p12 epoch 15/15 | train loss 0.001047 | test MAE 5.64°
+p12: MAE 5.64° (right eye 6.00°) | fold 8.9 min | about 17 min left for final
+final p13 epoch 1/15 | train loss 0.003898 | test MAE 6.34°
+final p13 epoch 2/15 | train loss 0.002268 | test MAE 5.99°
+final p13 epoch 3/15 | train loss 0.001982 | test MAE 6.16°
+final p13 epoch 4/15 | train loss 0.001815 | test MAE 6.23°
+final p13 epoch 5/15 | train loss 0.001700 | test MAE 6.18°
+final p13 epoch 6/15 | train loss 0.001614 | test MAE 6.03°
+final p13 epoch 7/15 | train loss 0.001546 | test MAE 5.99°
+final p13 epoch 8/15 | train loss 0.001489 | test MAE 6.49°
+final p13 epoch 9/15 | train loss 0.001450 | test MAE 6.16°
+final p13 epoch 10/15 | train loss 0.001414 | test MAE 5.97°
+final p13 epoch 11/15 | train loss 0.001181 | test MAE 6.01°
+final p13 epoch 12/15 | train loss 0.001152 | test MAE 5.93°
+final p13 epoch 13/15 | train loss 0.001139 | test MAE 6.00°
+final p13 epoch 14/15 | train loss 0.001129 | test MAE 6.03°
+final p13 epoch 15/15 | train loss 0.001121 | test MAE 6.00°
+p13: MAE 6.00° (right eye 5.34°) | fold 9.0 min | about 8 min left for final
+final p14 epoch 1/15 | train loss 0.003801 | test MAE 5.96°
+final p14 epoch 2/15 | train loss 0.002238 | test MAE 5.82°
+final p14 epoch 3/15 | train loss 0.001952 | test MAE 5.87°
+final p14 epoch 4/15 | train loss 0.001767 | test MAE 6.31°
+final p14 epoch 5/15 | train loss 0.001644 | test MAE 5.98°
+final p14 epoch 6/15 | train loss 0.001554 | test MAE 5.91°
+final p14 epoch 7/15 | train loss 0.001484 | test MAE 5.85°
+final p14 epoch 8/15 | train loss 0.001426 | test MAE 6.20°
+final p14 epoch 9/15 | train loss 0.001384 | test MAE 5.88°
+final p14 epoch 10/15 | train loss 0.001341 | test MAE 5.89°
+final p14 epoch 11/15 | train loss 0.001104 | test MAE 6.03°
+final p14 epoch 12/15 | train loss 0.001072 | test MAE 5.99°
+final p14 epoch 13/15 | train loss 0.001059 | test MAE 6.01°
+final p14 epoch 14/15 | train loss 0.001049 | test MAE 6.09°
+final p14 epoch 15/15 | train loss 0.001040 | test MAE 6.06°
+p14: MAE 6.06° (right eye 8.29°) | fold 8.9 min | about 0 min left for final
+
+final: person-equal MAE 6.03° (population std 0.88°, SE 0.23°) | pooled 5.74° | right eye only, person-equal 5.90° (v1 rerun: 6.34°)
+
+===== a_both_eyes =====
+{"eyes": ["right", "left"], "conv1": 8, "conv2": 16, "hidden": 16, "head_pose": false, "epochs": 5, "lr": 0.001, "batch_size": 128, "lr_drop_epochs": []}
+a_both_eyes p00 epoch 1/5 | train loss 0.004971 | test MAE 3.89°
+a_both_eyes p00 epoch 2/5 | train loss 0.003572 | test MAE 3.92°
+a_both_eyes p00 epoch 3/5 | train loss 0.003298 | test MAE 4.10°
+a_both_eyes p00 epoch 4/5 | train loss 0.003155 | test MAE 4.10°
+a_both_eyes p00 epoch 5/5 | train loss 0.003069 | test MAE 4.18°
+p00: MAE 4.18° (right eye 3.66°) | fold 1.5 min | about 20 min left for a_both_eyes
+a_both_eyes p01 epoch 1/5 | train loss 0.004735 | test MAE 5.77°
+a_both_eyes p01 epoch 2/5 | train loss 0.003489 | test MAE 5.80°
+a_both_eyes p01 epoch 3/5 | train loss 0.003219 | test MAE 5.53°
+a_both_eyes p01 epoch 4/5 | train loss 0.003065 | test MAE 5.45°
+a_both_eyes p01 epoch 5/5 | train loss 0.002974 | test MAE 5.42°
+p01: MAE 5.42° (right eye 5.49°) | fold 1.4 min | about 19 min left for a_both_eyes
+a_both_eyes p02 epoch 1/5 | train loss 0.005173 | test MAE 6.48°
+a_both_eyes p02 epoch 2/5 | train loss 0.003764 | test MAE 6.26°
+a_both_eyes p02 epoch 3/5 | train loss 0.003492 | test MAE 6.78°
+a_both_eyes p02 epoch 4/5 | train loss 0.003341 | test MAE 6.49°
+a_both_eyes p02 epoch 5/5 | train loss 0.003247 | test MAE 6.16°
+p02: MAE 6.16° (right eye 5.23°) | fold 1.4 min | about 17 min left for a_both_eyes
+a_both_eyes p03 epoch 1/5 | train loss 0.004327 | test MAE 6.08°
+a_both_eyes p03 epoch 2/5 | train loss 0.003062 | test MAE 5.93°
+a_both_eyes p03 epoch 3/5 | train loss 0.002813 | test MAE 6.11°
+a_both_eyes p03 epoch 4/5 | train loss 0.002693 | test MAE 5.82°
+a_both_eyes p03 epoch 5/5 | train loss 0.002617 | test MAE 5.78°
+p03: MAE 5.78° (right eye 6.24°) | fold 1.4 min | about 16 min left for a_both_eyes
+a_both_eyes p04 epoch 1/5 | train loss 0.004625 | test MAE 6.80°
+a_both_eyes p04 epoch 2/5 | train loss 0.003377 | test MAE 6.46°
+a_both_eyes p04 epoch 3/5 | train loss 0.003129 | test MAE 6.90°
+a_both_eyes p04 epoch 4/5 | train loss 0.002998 | test MAE 6.90°
+a_both_eyes p04 epoch 5/5 | train loss 0.002915 | test MAE 6.14°
+p04: MAE 6.14° (right eye 7.08°) | fold 1.5 min | about 14 min left for a_both_eyes
+a_both_eyes p05 epoch 1/5 | train loss 0.004201 | test MAE 6.25°
+a_both_eyes p05 epoch 2/5 | train loss 0.002958 | test MAE 6.42°
+a_both_eyes p05 epoch 3/5 | train loss 0.002743 | test MAE 6.35°
+a_both_eyes p05 epoch 4/5 | train loss 0.002627 | test MAE 6.22°
+a_both_eyes p05 epoch 5/5 | train loss 0.002553 | test MAE 6.49°
+p05: MAE 6.49° (right eye 6.21°) | fold 1.5 min | about 13 min left for a_both_eyes
+a_both_eyes p06 epoch 1/5 | train loss 0.004160 | test MAE 5.75°
+a_both_eyes p06 epoch 2/5 | train loss 0.002950 | test MAE 5.73°
+a_both_eyes p06 epoch 3/5 | train loss 0.002732 | test MAE 5.71°
+a_both_eyes p06 epoch 4/5 | train loss 0.002615 | test MAE 5.92°
+a_both_eyes p06 epoch 5/5 | train loss 0.002545 | test MAE 5.97°
+p06: MAE 5.97° (right eye 6.40°) | fold 1.5 min | about 11 min left for a_both_eyes
+a_both_eyes p07 epoch 1/5 | train loss 0.004396 | test MAE 7.68°
+a_both_eyes p07 epoch 2/5 | train loss 0.003025 | test MAE 8.05°
+a_both_eyes p07 epoch 3/5 | train loss 0.002797 | test MAE 6.96°
+a_both_eyes p07 epoch 4/5 | train loss 0.002677 | test MAE 7.39°
+a_both_eyes p07 epoch 5/5 | train loss 0.002590 | test MAE 7.55°
+p07: MAE 7.55° (right eye 7.91°) | fold 1.5 min | about 10 min left for a_both_eyes
+a_both_eyes p08 epoch 1/5 | train loss 0.004215 | test MAE 6.37°
+a_both_eyes p08 epoch 2/5 | train loss 0.003014 | test MAE 6.23°
+a_both_eyes p08 epoch 3/5 | train loss 0.002807 | test MAE 6.36°
+a_both_eyes p08 epoch 4/5 | train loss 0.002695 | test MAE 6.36°
+a_both_eyes p08 epoch 5/5 | train loss 0.002620 | test MAE 6.31°
+p08: MAE 6.31° (right eye 5.69°) | fold 1.5 min | about 9 min left for a_both_eyes
+a_both_eyes p09 epoch 1/5 | train loss 0.004498 | test MAE 6.86°
+a_both_eyes p09 epoch 2/5 | train loss 0.003265 | test MAE 7.14°
+a_both_eyes p09 epoch 3/5 | train loss 0.003044 | test MAE 7.13°
+a_both_eyes p09 epoch 4/5 | train loss 0.002920 | test MAE 7.49°
+a_both_eyes p09 epoch 5/5 | train loss 0.002841 | test MAE 7.26°
+p09: MAE 7.26° (right eye 6.56°) | fold 1.5 min | about 7 min left for a_both_eyes
+a_both_eyes p10 epoch 1/5 | train loss 0.004408 | test MAE 6.17°
+a_both_eyes p10 epoch 2/5 | train loss 0.003220 | test MAE 5.97°
+a_both_eyes p10 epoch 3/5 | train loss 0.002999 | test MAE 6.15°
+a_both_eyes p10 epoch 4/5 | train loss 0.002891 | test MAE 7.11°
+a_both_eyes p10 epoch 5/5 | train loss 0.002822 | test MAE 6.66°
+p10: MAE 6.66° (right eye 6.56°) | fold 1.6 min | about 6 min left for a_both_eyes
+a_both_eyes p11 epoch 1/5 | train loss 0.004769 | test MAE 5.41°
+a_both_eyes p11 epoch 2/5 | train loss 0.003403 | test MAE 5.52°
+a_both_eyes p11 epoch 3/5 | train loss 0.003154 | test MAE 5.53°
+a_both_eyes p11 epoch 4/5 | train loss 0.003037 | test MAE 5.23°
+a_both_eyes p11 epoch 5/5 | train loss 0.002963 | test MAE 5.73°
+p11: MAE 5.73° (right eye 6.42°) | fold 1.6 min | about 4 min left for a_both_eyes
+a_both_eyes p12 epoch 1/5 | train loss 0.004620 | test MAE 5.70°
+a_both_eyes p12 epoch 2/5 | train loss 0.003354 | test MAE 5.89°
+a_both_eyes p12 epoch 3/5 | train loss 0.003124 | test MAE 5.79°
+a_both_eyes p12 epoch 4/5 | train loss 0.003011 | test MAE 5.96°
+a_both_eyes p12 epoch 5/5 | train loss 0.002943 | test MAE 6.13°
+p12: MAE 6.13° (right eye 5.65°) | fold 1.6 min | about 3 min left for a_both_eyes
+a_both_eyes p13 epoch 1/5 | train loss 0.004284 | test MAE 6.80°
+a_both_eyes p13 epoch 2/5 | train loss 0.003084 | test MAE 6.41°
+a_both_eyes p13 epoch 3/5 | train loss 0.002871 | test MAE 6.91°
+a_both_eyes p13 epoch 4/5 | train loss 0.002764 | test MAE 6.63°
+a_both_eyes p13 epoch 5/5 | train loss 0.002694 | test MAE 6.58°
+p13: MAE 6.58° (right eye 6.14°) | fold 1.6 min | about 1 min left for a_both_eyes
+a_both_eyes p14 epoch 1/5 | train loss 0.004711 | test MAE 6.53°
+a_both_eyes p14 epoch 2/5 | train loss 0.003407 | test MAE 6.36°
+a_both_eyes p14 epoch 3/5 | train loss 0.003151 | test MAE 6.73°
+a_both_eyes p14 epoch 4/5 | train loss 0.003003 | test MAE 6.71°
+a_both_eyes p14 epoch 5/5 | train loss 0.002924 | test MAE 6.56°
+p14: MAE 6.56° (right eye 8.96°) | fold 1.6 min | about 0 min left for a_both_eyes
+
+a_both_eyes: person-equal MAE 6.19° (population std 0.76°, SE 0.20°) | pooled 5.90° | right eye only, person-equal 6.28° (v1 rerun: 6.34°)
+
+===== b_wide =====
+{"eyes": ["right", "left"], "conv1": 20, "conv2": 50, "hidden": 500, "head_pose": false, "epochs": 5, "lr": 0.001, "batch_size": 128, "lr_drop_epochs": []}
+b_wide p00 epoch 1/5 | train loss 0.004291 | test MAE 3.99°
+b_wide p00 epoch 2/5 | train loss 0.002558 | test MAE 3.98°
+b_wide p00 epoch 3/5 | train loss 0.002230 | test MAE 3.71°
+b_wide p00 epoch 4/5 | train loss 0.002030 | test MAE 3.91°
+b_wide p00 epoch 5/5 | train loss 0.001885 | test MAE 3.60°
+p00: MAE 3.60° (right eye 2.91°) | fold 2.6 min | about 37 min left for b_wide
+b_wide p01 epoch 1/5 | train loss 0.004109 | test MAE 5.54°
+b_wide p01 epoch 2/5 | train loss 0.002408 | test MAE 5.19°
+b_wide p01 epoch 3/5 | train loss 0.002102 | test MAE 5.00°
+b_wide p01 epoch 4/5 | train loss 0.001922 | test MAE 5.12°
+b_wide p01 epoch 5/5 | train loss 0.001796 | test MAE 4.99°
+p01: MAE 4.99° (right eye 4.57°) | fold 2.7 min | about 35 min left for b_wide
+b_wide p02 epoch 1/5 | train loss 0.004476 | test MAE 5.58°
+b_wide p02 epoch 2/5 | train loss 0.002591 | test MAE 5.87°
+b_wide p02 epoch 3/5 | train loss 0.002281 | test MAE 5.76°
+b_wide p02 epoch 4/5 | train loss 0.002104 | test MAE 5.28°
+b_wide p02 epoch 5/5 | train loss 0.001984 | test MAE 5.81°
+p02: MAE 5.81° (right eye 5.11°) | fold 2.6 min | about 32 min left for b_wide
+b_wide p03 epoch 1/5 | train loss 0.003794 | test MAE 5.77°
+b_wide p03 epoch 2/5 | train loss 0.002179 | test MAE 5.65°
+b_wide p03 epoch 3/5 | train loss 0.001890 | test MAE 5.58°
+b_wide p03 epoch 4/5 | train loss 0.001722 | test MAE 5.49°
+b_wide p03 epoch 5/5 | train loss 0.001599 | test MAE 5.42°
+p03: MAE 5.42° (right eye 5.64°) | fold 2.5 min | about 29 min left for b_wide
+b_wide p04 epoch 1/5 | train loss 0.004019 | test MAE 8.38°
+b_wide p04 epoch 2/5 | train loss 0.002322 | test MAE 7.63°
+b_wide p04 epoch 3/5 | train loss 0.002010 | test MAE 8.09°
+b_wide p04 epoch 4/5 | train loss 0.001831 | test MAE 7.90°
+b_wide p04 epoch 5/5 | train loss 0.001710 | test MAE 6.77°
+p04: MAE 6.77° (right eye 7.79°) | fold 2.8 min | about 27 min left for b_wide
+b_wide p05 epoch 1/5 | train loss 0.003751 | test MAE 6.32°
+b_wide p05 epoch 2/5 | train loss 0.002181 | test MAE 6.48°
+b_wide p05 epoch 3/5 | train loss 0.001886 | test MAE 6.04°
+b_wide p05 epoch 4/5 | train loss 0.001709 | test MAE 6.11°
+b_wide p05 epoch 5/5 | train loss 0.001590 | test MAE 6.46°
+p05: MAE 6.46° (right eye 6.13°) | fold 2.8 min | about 24 min left for b_wide
+b_wide p06 epoch 1/5 | train loss 0.003849 | test MAE 6.26°
+b_wide p06 epoch 2/5 | train loss 0.002259 | test MAE 5.57°
+b_wide p06 epoch 3/5 | train loss 0.001962 | test MAE 5.60°
+b_wide p06 epoch 4/5 | train loss 0.001799 | test MAE 5.72°
+b_wide p06 epoch 5/5 | train loss 0.001685 | test MAE 5.88°
+p06: MAE 5.88° (right eye 6.39°) | fold 2.7 min | about 21 min left for b_wide
+b_wide p07 epoch 1/5 | train loss 0.003841 | test MAE 6.98°
+b_wide p07 epoch 2/5 | train loss 0.002148 | test MAE 7.06°
+b_wide p07 epoch 3/5 | train loss 0.001847 | test MAE 6.87°
+b_wide p07 epoch 4/5 | train loss 0.001685 | test MAE 6.56°
+b_wide p07 epoch 5/5 | train loss 0.001570 | test MAE 6.74°
+p07: MAE 6.74° (right eye 7.07°) | fold 2.8 min | about 19 min left for b_wide
+b_wide p08 epoch 1/5 | train loss 0.003720 | test MAE 6.37°
+b_wide p08 epoch 2/5 | train loss 0.002140 | test MAE 5.89°
+b_wide p08 epoch 3/5 | train loss 0.001838 | test MAE 5.87°
+b_wide p08 epoch 4/5 | train loss 0.001650 | test MAE 6.55°
+b_wide p08 epoch 5/5 | train loss 0.001518 | test MAE 6.24°
+p08: MAE 6.24° (right eye 5.35°) | fold 2.8 min | about 16 min left for b_wide
+b_wide p09 epoch 1/5 | train loss 0.003851 | test MAE 7.24°
+b_wide p09 epoch 2/5 | train loss 0.002264 | test MAE 6.58°
+b_wide p09 epoch 3/5 | train loss 0.001971 | test MAE 6.68°
+b_wide p09 epoch 4/5 | train loss 0.001796 | test MAE 6.93°
+b_wide p09 epoch 5/5 | train loss 0.001677 | test MAE 7.18°
+p09: MAE 7.18° (right eye 5.99°) | fold 2.9 min | about 14 min left for b_wide
+b_wide p10 epoch 1/5 | train loss 0.003737 | test MAE 8.12°
+b_wide p10 epoch 2/5 | train loss 0.002212 | test MAE 7.26°
+b_wide p10 epoch 3/5 | train loss 0.001919 | test MAE 6.96°
+b_wide p10 epoch 4/5 | train loss 0.001739 | test MAE 7.48°
+b_wide p10 epoch 5/5 | train loss 0.001619 | test MAE 7.32°
+p10: MAE 7.32° (right eye 6.60°) | fold 2.9 min | about 11 min left for b_wide
+b_wide p11 epoch 1/5 | train loss 0.003894 | test MAE 5.32°
+b_wide p11 epoch 2/5 | train loss 0.002307 | test MAE 6.57°
+b_wide p11 epoch 3/5 | train loss 0.001984 | test MAE 5.73°
+b_wide p11 epoch 4/5 | train loss 0.001803 | test MAE 6.45°
+b_wide p11 epoch 5/5 | train loss 0.001682 | test MAE 6.03°
+p11: MAE 6.03° (right eye 6.80°) | fold 2.9 min | about 8 min left for b_wide
+b_wide p12 epoch 1/5 | train loss 0.003826 | test MAE 5.53°
+b_wide p12 epoch 2/5 | train loss 0.002267 | test MAE 5.67°
+b_wide p12 epoch 3/5 | train loss 0.001991 | test MAE 5.44°
+b_wide p12 epoch 4/5 | train loss 0.001825 | test MAE 5.33°
+b_wide p12 epoch 5/5 | train loss 0.001711 | test MAE 5.23°
+p12: MAE 5.23° (right eye 5.31°) | fold 2.9 min | about 6 min left for b_wide
+b_wide p13 epoch 1/5 | train loss 0.003801 | test MAE 6.51°
+b_wide p13 epoch 2/5 | train loss 0.002224 | test MAE 6.22°
+b_wide p13 epoch 3/5 | train loss 0.001938 | test MAE 6.31°
+b_wide p13 epoch 4/5 | train loss 0.001770 | test MAE 6.54°
+b_wide p13 epoch 5/5 | train loss 0.001651 | test MAE 6.11°
+p13: MAE 6.11° (right eye 5.49°) | fold 2.9 min | about 3 min left for b_wide
+b_wide p14 epoch 1/5 | train loss 0.003828 | test MAE 6.72°
+b_wide p14 epoch 2/5 | train loss 0.002266 | test MAE 6.89°
+b_wide p14 epoch 3/5 | train loss 0.001972 | test MAE 6.48°
+b_wide p14 epoch 4/5 | train loss 0.001801 | test MAE 6.55°
+b_wide p14 epoch 5/5 | train loss 0.001689 | test MAE 6.24°
+p14: MAE 6.24° (right eye 8.56°) | fold 2.9 min | about 0 min left for b_wide
+
+b_wide: person-equal MAE 6.00° (population std 0.91°, SE 0.23°) | pooled 5.64° | right eye only, person-equal 5.98° (v1 rerun: 6.34°)
+
+===== c_head_pose =====
+{"eyes": ["right", "left"], "conv1": 20, "conv2": 50, "hidden": 500, "head_pose": true, "epochs": 5, "lr": 0.001, "batch_size": 128, "lr_drop_epochs": []}
+c_head_pose p00 epoch 1/5 | train loss 0.004323 | test MAE 3.76°
+c_head_pose p00 epoch 2/5 | train loss 0.002505 | test MAE 3.99°
+c_head_pose p00 epoch 3/5 | train loss 0.002198 | test MAE 3.55°
+c_head_pose p00 epoch 4/5 | train loss 0.002016 | test MAE 3.66°
+c_head_pose p00 epoch 5/5 | train loss 0.001887 | test MAE 3.71°
+p00: MAE 3.71° (right eye 3.54°) | fold 2.6 min | about 37 min left for c_head_pose
+c_head_pose p01 epoch 1/5 | train loss 0.004072 | test MAE 5.32°
+c_head_pose p01 epoch 2/5 | train loss 0.002369 | test MAE 4.51°
+c_head_pose p01 epoch 3/5 | train loss 0.002043 | test MAE 5.78°
+c_head_pose p01 epoch 4/5 | train loss 0.001867 | test MAE 5.89°
+c_head_pose p01 epoch 5/5 | train loss 0.001736 | test MAE 6.22°
+p01: MAE 6.22° (right eye 5.00°) | fold 2.7 min | about 35 min left for c_head_pose
+c_head_pose p02 epoch 1/5 | train loss 0.004173 | test MAE 6.11°
+c_head_pose p02 epoch 2/5 | train loss 0.002429 | test MAE 5.79°
+c_head_pose p02 epoch 3/5 | train loss 0.002136 | test MAE 5.20°
+c_head_pose p02 epoch 4/5 | train loss 0.001956 | test MAE 4.86°
+c_head_pose p02 epoch 5/5 | train loss 0.001829 | test MAE 5.60°
+p02: MAE 5.60° (right eye 4.95°) | fold 2.6 min | about 32 min left for c_head_pose
+c_head_pose p03 epoch 1/5 | train loss 0.003811 | test MAE 6.04°
+c_head_pose p03 epoch 2/5 | train loss 0.002187 | test MAE 6.07°
+c_head_pose p03 epoch 3/5 | train loss 0.001867 | test MAE 5.69°
+c_head_pose p03 epoch 4/5 | train loss 0.001691 | test MAE 5.70°
+c_head_pose p03 epoch 5/5 | train loss 0.001576 | test MAE 5.75°
+p03: MAE 5.75° (right eye 5.79°) | fold 2.6 min | about 29 min left for c_head_pose
+c_head_pose p04 epoch 1/5 | train loss 0.004000 | test MAE 7.34°
+c_head_pose p04 epoch 2/5 | train loss 0.002320 | test MAE 6.63°
+c_head_pose p04 epoch 3/5 | train loss 0.001999 | test MAE 7.20°
+c_head_pose p04 epoch 4/5 | train loss 0.001818 | test MAE 7.24°
+c_head_pose p04 epoch 5/5 | train loss 0.001701 | test MAE 6.36°
+p04: MAE 6.36° (right eye 7.11°) | fold 2.8 min | about 27 min left for c_head_pose
+c_head_pose p05 epoch 1/5 | train loss 0.003797 | test MAE 6.59°
+c_head_pose p05 epoch 2/5 | train loss 0.002244 | test MAE 6.54°
+c_head_pose p05 epoch 3/5 | train loss 0.001935 | test MAE 6.51°
+c_head_pose p05 epoch 4/5 | train loss 0.001753 | test MAE 6.21°
+c_head_pose p05 epoch 5/5 | train loss 0.001627 | test MAE 6.40°
+p05: MAE 6.40° (right eye 6.75°) | fold 2.8 min | about 24 min left for c_head_pose
+c_head_pose p06 epoch 1/5 | train loss 0.003780 | test MAE 5.51°
+c_head_pose p06 epoch 2/5 | train loss 0.002197 | test MAE 5.65°
+c_head_pose p06 epoch 3/5 | train loss 0.001897 | test MAE 5.44°
+c_head_pose p06 epoch 4/5 | train loss 0.001706 | test MAE 5.54°
+c_head_pose p06 epoch 5/5 | train loss 0.001575 | test MAE 5.92°
+p06: MAE 5.92° (right eye 6.05°) | fold 2.8 min | about 22 min left for c_head_pose
+c_head_pose p07 epoch 1/5 | train loss 0.003685 | test MAE 7.04°
+c_head_pose p07 epoch 2/5 | train loss 0.002055 | test MAE 7.00°
+c_head_pose p07 epoch 3/5 | train loss 0.001756 | test MAE 6.72°
+c_head_pose p07 epoch 4/5 | train loss 0.001599 | test MAE 6.95°
+c_head_pose p07 epoch 5/5 | train loss 0.001487 | test MAE 6.88°
+p07: MAE 6.88° (right eye 7.18°) | fold 2.8 min | about 19 min left for c_head_pose
+c_head_pose p08 epoch 1/5 | train loss 0.003741 | test MAE 6.12°
+c_head_pose p08 epoch 2/5 | train loss 0.002095 | test MAE 5.92°
+c_head_pose p08 epoch 3/5 | train loss 0.001778 | test MAE 5.91°
+c_head_pose p08 epoch 4/5 | train loss 0.001597 | test MAE 6.51°
+c_head_pose p08 epoch 5/5 | train loss 0.001476 | test MAE 6.26°
+p08: MAE 6.26° (right eye 5.29°) | fold 2.9 min | about 16 min left for c_head_pose
+c_head_pose p09 epoch 1/5 | train loss 0.003835 | test MAE 6.75°
+c_head_pose p09 epoch 2/5 | train loss 0.002217 | test MAE 7.00°
+c_head_pose p09 epoch 3/5 | train loss 0.001940 | test MAE 7.40°
+c_head_pose p09 epoch 4/5 | train loss 0.001781 | test MAE 6.67°
+c_head_pose p09 epoch 5/5 | train loss 0.001676 | test MAE 7.31°
+p09: MAE 7.31° (right eye 5.86°) | fold 2.9 min | about 14 min left for c_head_pose
+c_head_pose p10 epoch 1/5 | train loss 0.003769 | test MAE 6.94°
+c_head_pose p10 epoch 2/5 | train loss 0.002214 | test MAE 6.36°
+c_head_pose p10 epoch 3/5 | train loss 0.001929 | test MAE 6.42°
+c_head_pose p10 epoch 4/5 | train loss 0.001763 | test MAE 7.19°
+c_head_pose p10 epoch 5/5 | train loss 0.001655 | test MAE 6.49°
+p10: MAE 6.49° (right eye 5.97°) | fold 3.0 min | about 11 min left for c_head_pose
+c_head_pose p11 epoch 1/5 | train loss 0.003820 | test MAE 5.89°
+c_head_pose p11 epoch 2/5 | train loss 0.002252 | test MAE 6.14°
+c_head_pose p11 epoch 3/5 | train loss 0.001962 | test MAE 5.87°
+c_head_pose p11 epoch 4/5 | train loss 0.001797 | test MAE 5.71°
+c_head_pose p11 epoch 5/5 | train loss 0.001684 | test MAE 6.28°
+p11: MAE 6.28° (right eye 6.12°) | fold 2.9 min | about 8 min left for c_head_pose
+c_head_pose p12 epoch 1/5 | train loss 0.003871 | test MAE 5.70°
+c_head_pose p12 epoch 2/5 | train loss 0.002214 | test MAE 5.65°
+c_head_pose p12 epoch 3/5 | train loss 0.001923 | test MAE 5.37°
+c_head_pose p12 epoch 4/5 | train loss 0.001749 | test MAE 5.38°
+c_head_pose p12 epoch 5/5 | train loss 0.001636 | test MAE 5.62°
+p12: MAE 5.62° (right eye 5.86°) | fold 2.9 min | about 6 min left for c_head_pose
+c_head_pose p13 epoch 1/5 | train loss 0.003898 | test MAE 6.34°
+c_head_pose p13 epoch 2/5 | train loss 0.002268 | test MAE 5.99°
+c_head_pose p13 epoch 3/5 | train loss 0.001982 | test MAE 6.16°
+c_head_pose p13 epoch 4/5 | train loss 0.001815 | test MAE 6.23°
+c_head_pose p13 epoch 5/5 | train loss 0.001700 | test MAE 6.18°
+p13: MAE 6.18° (right eye 5.54°) | fold 3.0 min | about 3 min left for c_head_pose
+c_head_pose p14 epoch 1/5 | train loss 0.003801 | test MAE 5.96°
+c_head_pose p14 epoch 2/5 | train loss 0.002238 | test MAE 5.82°
+c_head_pose p14 epoch 3/5 | train loss 0.001952 | test MAE 5.87°
+c_head_pose p14 epoch 4/5 | train loss 0.001767 | test MAE 6.31°
+c_head_pose p14 epoch 5/5 | train loss 0.001644 | test MAE 5.98°
+p14: MAE 5.98° (right eye 8.30°) | fold 3.0 min | about 0 min left for c_head_pose
+
+c_head_pose: person-equal MAE 6.06° (population std 0.77°, SE 0.20°) | pooled 5.80° | right eye only, person-equal 5.95° (v1 rerun: 6.34°)

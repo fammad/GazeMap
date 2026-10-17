@@ -1,10 +1,19 @@
+# Python
 __pycache__/
 *.pyc
+.gazemap-env/
+playground.py
+.DS_Store
+
+# Data and large artifacts (not in git)
+dataset/
 *.pt
 *.pth
-.gazemap-env/
-dataset/
-.DS_Store
-playground.py
-lopo_final_output.txt
-lopo_sample_results.csv
+results/*/folds/
+results/*/sample_results.csv
+archive/
+results/quick_*/
+
+# Demo, created on first run / per user
+face_landmarker.task
+calibration.json

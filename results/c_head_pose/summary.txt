@@ -1,0 +1,1 @@
+c_head_pose: person-equal MAE 6.06° (population std 0.77°, SE 0.20°) | pooled 5.80° | right eye only, person-equal 5.95° (v1 rerun: 6.34°)

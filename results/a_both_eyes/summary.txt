@@ -1,0 +1,1 @@
+a_both_eyes: person-equal MAE 6.19° (population std 0.76°, SE 0.20°) | pooled 5.90° | right eye only, person-equal 6.28° (v1 rerun: 6.34°)

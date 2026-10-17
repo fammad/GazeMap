@@ -1,0 +1,1 @@
+final: person-equal MAE 6.03° (population std 0.88°, SE 0.23°) | pooled 5.74° | right eye only, person-equal 5.90° (v1 rerun: 6.34°)

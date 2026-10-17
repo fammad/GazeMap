@@ -1,4 +1,6 @@
+import argparse
 import csv
+from pathlib import Path
 
 import matplotlib
 
@@ -8,9 +10,9 @@ import numpy as np
 from scipy.spatial.transform import Rotation
 
 
-RESULTS_CSV = "lopo_sample_results.csv"
-OUTPUT_CSV = "pose_results.csv"
-OUTPUT_PLOT = "pose_error.png"
+RESULTS_CSV = "results/final/sample_results.csv"
+OUTPUT_CSV = "results/pose/pose_results.csv"
+OUTPUT_PLOT = "results/pose/pose_error.png"
 
 # Bin edges in degrees of head rotation away from the camera.
 BIN_EDGES = [0, 10, 20, 30, 40, 180]
@@ -142,7 +144,12 @@ def plot_bins(rows, path):
 
 
 def main():
-    person_ids, poses, gazes, errors = load_results(RESULTS_CSV)
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--results", default=RESULTS_CSV,
+                        help="per-sample results CSV written by train_lopo.py")
+    args = parser.parse_args()
+
+    person_ids, poses, gazes, errors = load_results(args.results)
     print("Samples loaded:", len(errors))
 
     head_angles = head_angle_degrees(poses)
@@ -164,6 +171,7 @@ def main():
     worse, checked = count_people_with_trend(person_ids, head_angles, errors)
     print(f"Error is higher when turned for {worse} of {checked} people")
 
+    Path(OUTPUT_CSV).parent.mkdir(parents=True, exist_ok=True)
     save_table(rows, OUTPUT_CSV)
     plot_bins(rows, OUTPUT_PLOT)
     print(f"\nSaved: {OUTPUT_CSV}, {OUTPUT_PLOT}")
