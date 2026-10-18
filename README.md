@@ -136,6 +136,10 @@ Tips: sit about 70 cm from the screen with light on your face, and calibrate aga
 | `evaluate.py`, `analyze_pose.py`, `robustness.py` | the evaluation in [docs/EVALUATION.md](docs/EVALUATION.md) |
 | `get_stimuli.py` | downloads the example paintings |
 
+## Status
+
+Personal project, finished in October 2026. The evaluation has not been peer reviewed.
+
 ## Credits
 
 MPIIGaze dataset: Zhang, Sugano, Fritz and Bulling ([paper](https://arxiv.org/abs/1711.09017)). Face landmarks: Google MediaPipe. Paintings: public domain, via Wikimedia Commons.
