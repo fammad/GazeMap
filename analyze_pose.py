@@ -1,3 +1,8 @@
+"""Splits LOPO error by head rotation away from the camera, overall and within each person.
+
+Needs results/final/sample_results.csv from training. Writes results/pose/.
+Run: python analyze_pose.py
+"""
 import argparse
 import csv
 from pathlib import Path

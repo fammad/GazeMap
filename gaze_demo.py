@@ -15,7 +15,7 @@ Pipeline (same normalization as MPIIGaze, Zhang et al.):
 
 Usage:
   python gaze_demo.py                         # webcam with the final models
-  python gaze_demo.py --calibrate             # run the 9-dot calibration first
+  python gaze_demo.py --calibrate             # run the 13-dot calibration first
   python gaze_demo.py --heatmap               # where you look on the screen, as a heatmap
   python gaze_demo.py --heatmap --stimulus poster.png
   python gaze_demo.py --heatmap --stimulus my_photos/ --seconds 10   # slideshow, one heatmap per image
@@ -1573,7 +1573,7 @@ def main():
     parser.add_argument("--camera", type=int, default=0)
     parser.add_argument("--focal", type=float, default=None,
                         help="camera focal length in pixels (default: image width)")
-    parser.add_argument("--calibrate", action="store_true", help="run the 9-dot calibration at start")
+    parser.add_argument("--calibrate", action="store_true", help="run the 13-dot calibration at start")
     parser.add_argument("--no-calibration", action="store_true", help="ignore a saved calibration.json")
     parser.add_argument("--screen-width-mm", type=float, default=345.0,
                         help="physical screen width in mm (default: MacBook Pro 16 inch, 2021)")

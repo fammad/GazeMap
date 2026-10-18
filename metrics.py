@@ -1,3 +1,7 @@
+"""Angular error in degrees between predicted and true gaze, given as (pitch, yaw) in radians.
+
+Run directly for a self-check: python metrics.py
+"""
 import torch
 
 
