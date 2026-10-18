@@ -3,7 +3,7 @@ cycler==0.12.1
 filelock==3.29.4
 fonttools==4.63.0
 fsspec==2026.6.0
-h5py
+h5py==3.16.0
 Jinja2==3.1.6
 kiwisolver==1.5.0
 MarkupSafe==3.0.3
@@ -16,10 +16,10 @@ packaging==26.2
 pillow==12.3.0
 pyparsing==3.3.2
 python-dateutil==2.9.0.post0
-scipy
+scipy==1.18.1
 setuptools==81.0.0
 six==1.17.0
 sympy==1.14.0
 torch==2.12.1
 typing_extensions==4.15.0
-mediapipe
+mediapipe==1.1.1
