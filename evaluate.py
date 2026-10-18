@@ -7,10 +7,14 @@ person predicts gaze for both eyes. Then:
   2. both eyes    : the two eyes' predictions are rotated back to camera space
                     and averaged; compared with the average of the two true
                     gaze directions
-  3. calibrated   : 9 frames from ONE recording day of that person are used to
-                    fit a small correction (a fixed offset in pitch/yaw per eye);
-                    it is tested on all OTHER days, where head pose, distance
-                    and lighting differ. Repeated 5 times with different days.
+  3. calibrated   : frames from ONE recording day of that person are used to
+                    fit a correction; it is tested on all OTHER days, where head
+                    pose, distance and lighting differ. Repeated 5 times with
+                    different days. Three methods are compared:
+                      offset     9 frames, a fixed pitch/yaw offset per eye
+                      affine 9   offset, then a scale + shift + tilt of the
+                                 combined gaze (stretches a squeezed range)
+                      affine 13  the same with 13 frames, like the demo
 
 Head-pose check: calibrated error is also reported by how far the head is
 turned compared with the calibration frames, to see whether the correction
@@ -43,6 +47,8 @@ from gaze_model import BASE, GazeNet, list_people, load_all
 ORIGINAL = Path("dataset/Data/Original")
 OUT_DIR = Path("results/evaluation")
 N_CALIBRATION = 9
+N_CALIBRATION_AFFINE = 13
+AFFINE_RIDGE = 0.05  # pulls the affine fit towards "no change"; chosen on held-out days
 N_REPEATS = 5
 MIN_DAY_FRAMES = 30
 SEED = 42
@@ -152,6 +158,17 @@ def calibrate_offsets(pred, truth):
     return (truth - pred).mean(axis=0)
 
 
+def fit_affine(pred_angles, true_angles, ridge=AFFINE_RIDGE):
+    """Least-squares map [pitch, yaw, 1] -> [pitch, yaw], gently pulled towards identity."""
+    X = np.column_stack([pred_angles, np.ones(len(pred_angles))])
+    identity = np.array([[1.0, 0.0], [0.0, 1.0], [0.0, 0.0]])
+    return np.linalg.solve(X.T @ X + ridge * np.eye(3), X.T @ true_angles + ridge * identity)
+
+
+def apply_affine(A, angles):
+    return np.column_stack([angles, np.ones(len(angles))]) @ A
+
+
 # ---------- main evaluation ----------
 
 def evaluate_person(person, data, pred_all, rng):
@@ -191,24 +208,36 @@ def evaluate_person(person, data, pred_all, rng):
     days = data["day"][r]
     eligible = [d for d in sorted(set(days)) if (days == d).sum() >= MIN_DAY_FRAMES]
     calib_errors, calib_baseline, head_diffs = [], [], []
+    affine9_errors, affine13_errors = [], []
+    truth_vec = to_camera(true["r"], "r") + to_camera(true["l"], "l")
+    truth_ang = vectors_to_angles(truth_vec)
+
+    def offset_corrected(chosen):
+        return {e: pred[e] + calibrate_offsets(pred[e][chosen], true[e][chosen]) for e in ("r", "l")}
+
+    def affine_error(chosen, test):
+        corrected = offset_corrected(chosen)
+        ang = vectors_to_angles(to_camera(corrected["r"], "r") + to_camera(corrected["l"], "l"))
+        A = fit_affine(ang[chosen], truth_ang[chosen])
+        return angle_between(angles_to_vectors(apply_affine(A, ang[test])), truth_vec[test])
+
     for repeat in range(N_REPEATS):
         if not eligible:
             break
         cal_day = eligible[rng.integers(len(eligible))]
         day_frames = np.where(days == cal_day)[0]
-        truth_cam = to_camera(true["r"], "r") + to_camera(true["l"], "l")
-        chosen = day_frames[pick_calibration(vectors_to_angles(truth_cam[day_frames]), rng)]
+        chosen = day_frames[pick_calibration(truth_ang[day_frames], rng)]
+        extra = rng.choice(np.setdiff1d(day_frames, chosen), N_CALIBRATION_AFFINE - N_CALIBRATION, replace=False)
+        chosen13 = np.concatenate([chosen, extra])
         test = days != cal_day
         if not test.any():
             continue
 
-        corrected = {}
-        for e in ("r", "l"):
-            offset = calibrate_offsets(pred[e][chosen], true[e][chosen])
-            corrected[e] = pred[e] + offset
-
+        corrected = offset_corrected(chosen)
         calib_errors.append(fused_error(corrected["r"], corrected["l"], test))
         calib_baseline.append(fused_error(pred["r"], pred["l"], test))
+        affine9_errors.append(affine_error(chosen, test))
+        affine13_errors.append(affine_error(chosen13, test))
 
         cal_head = data["head_forward"][r][chosen].mean(axis=0)
         head_diffs.append(angle_between(data["head_forward"][r][test],
@@ -225,10 +254,13 @@ def evaluate_person(person, data, pred_all, rng):
     if calib_errors:
         row["calibrated_other_days_mae"] = float(np.mean([e.mean() for e in calib_errors]))
         row["both_eyes_other_days_mae"] = float(np.mean([e.mean() for e in calib_baseline]))
+        row["affine9_other_days_mae"] = float(np.mean([e.mean() for e in affine9_errors]))
+        row["affine13_other_days_mae"] = float(np.mean([e.mean() for e in affine13_errors]))
         row["calibration_repeats"] = len(calib_errors)
     by_head = {
         "calibrated": np.concatenate(calib_errors) if calib_errors else np.array([]),
         "uncalibrated": np.concatenate(calib_baseline) if calib_baseline else np.array([]),
+        "affine13": np.concatenate(affine13_errors) if affine13_errors else np.array([]),
         "head_diff": np.concatenate(head_diffs) if head_diffs else np.array([]),
     }
     return row, by_head
@@ -278,7 +310,8 @@ def main():
         head_parts.append(by_head)
         print(f"{person}: single eye {row['single_eye_mae']:.2f}° | both eyes {row['both_eyes_mae']:.2f}°"
               + (f" | other days: {row['both_eyes_other_days_mae']:.2f}° -> calibrated "
-                 f"{row['calibrated_other_days_mae']:.2f}°" if "calibrated_other_days_mae" in row else ""))
+                 f"{row['calibrated_other_days_mae']:.2f}° (offset), {row['affine9_other_days_mae']:.2f}° (affine 9), "
+                 f"{row['affine13_other_days_mae']:.2f}° (affine 13)" if "calibrated_other_days_mae" in row else ""))
 
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     with open(OUT_DIR / "per_person.csv", "w", newline="") as file:
@@ -294,13 +327,16 @@ def main():
     for key, label in [("single_eye_mae", "single eye"),
                        ("both_eyes_mae", "both eyes fused"),
                        ("both_eyes_other_days_mae", "both eyes, other days (no calibration)"),
-                       ("calibrated_other_days_mae", "both eyes, other days, 9-frame calibration")]:
+                       ("calibrated_other_days_mae", "both eyes, other days, 9-frame offset calibration"),
+                       ("affine9_other_days_mae", "both eyes, other days, 9-frame affine calibration"),
+                       ("affine13_other_days_mae", "both eyes, other days, 13-frame affine calibration")]:
         m, se, n = pe(key)
         lines.append(f"{label:45s} {m:.2f}° (SE {se:.2f}, n={n})")
 
     # Calibration benefit by head-pose change.
     cal = np.concatenate([h["calibrated"] for h in head_parts])
     unc = np.concatenate([h["uncalibrated"] for h in head_parts])
+    aff = np.concatenate([h["affine13"] for h in head_parts])
     hd = np.concatenate([h["head_diff"] for h in head_parts])
     lines.append("\nHead turned away from calibration pose (pooled over people and repeats):")
     head_rows = []
@@ -309,8 +345,10 @@ def main():
         if m.sum() == 0:
             continue
         head_rows.append({"head_change": f"{lo}-{hi}", "n": int(m.sum()),
-                          "uncalibrated_mae": float(unc[m].mean()), "calibrated_mae": float(cal[m].mean())})
-        lines.append(f"  {lo:>3}-{hi:<3} deg  n={m.sum():<7} uncalibrated {unc[m].mean():.2f}°  calibrated {cal[m].mean():.2f}°")
+                          "uncalibrated_mae": float(unc[m].mean()), "calibrated_mae": float(cal[m].mean()),
+                          "affine13_mae": float(aff[m].mean())})
+        lines.append(f"  {lo:>3}-{hi:<3} deg  n={m.sum():<7} uncalibrated {unc[m].mean():.2f}°  "
+                     f"offset {cal[m].mean():.2f}°  affine 13 {aff[m].mean():.2f}°")
 
     with open(OUT_DIR / "calibration_by_head_change.csv", "w", newline="") as file:
         writer = csv.DictWriter(file, fieldnames=list(head_rows[0].keys()))
@@ -329,10 +367,11 @@ def plot(rows, head_rows, path):
     people = [r["person_id"] for r in rows]
     x = np.arange(len(rows))
     series = [("single_eye_mae", "single eye"), ("both_eyes_mae", "both eyes"),
-              ("calibrated_other_days_mae", "both eyes + 9-frame calibration")]
+              ("calibrated_other_days_mae", "+ offset calibration"),
+              ("affine13_other_days_mae", "+ affine calibration (13)")]
     for k, (key, label) in enumerate(series):
         vals = [r.get(key, np.nan) for r in rows]
-        axes[0].bar(x + (k - 1) * 0.27, vals, width=0.27, label=label)
+        axes[0].bar(x + (k - 1.5) * 0.2, vals, width=0.2, label=label)
     axes[0].set_xticks(x)
     axes[0].set_xticklabels(people, rotation=0, fontsize=8)
     axes[0].set_ylabel("Mean angular error (degrees)")
@@ -342,7 +381,8 @@ def plot(rows, head_rows, path):
     labels = [h["head_change"].replace("-180", "+") + "°" for h in head_rows]
     hx = np.arange(len(head_rows))
     axes[1].plot(hx, [h["uncalibrated_mae"] for h in head_rows], marker="o", label="no calibration")
-    axes[1].plot(hx, [h["calibrated_mae"] for h in head_rows], marker="o", label="calibrated")
+    axes[1].plot(hx, [h["calibrated_mae"] for h in head_rows], marker="o", label="offset")
+    axes[1].plot(hx, [h["affine13_mae"] for h in head_rows], marker="o", label="affine (13)")
     axes[1].set_xticks(hx)
     axes[1].set_xticklabels(labels)
     axes[1].set_xlabel("Head turned vs calibration pose")

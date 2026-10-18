@@ -1,10 +1,12 @@
 single eye                                    6.03° (SE 0.23, n=15)
 both eyes fused                               4.97° (SE 0.21, n=15)
-both eyes, other days (no calibration)        4.99° (SE 0.21, n=15)
-both eyes, other days, 9-frame calibration    4.06° (SE 0.23, n=15)
+both eyes, other days (no calibration)        4.97° (SE 0.21, n=15)
+both eyes, other days, 9-frame offset calibration 3.98° (SE 0.23, n=15)
+both eyes, other days, 9-frame affine calibration 4.03° (SE 0.24, n=15)
+both eyes, other days, 13-frame affine calibration 4.01° (SE 0.25, n=15)
 
 Head turned away from calibration pose (pooled over people and repeats):
-    0-5   deg  n=169208  uncalibrated 4.61°  calibrated 3.73°
-    5-10  deg  n=305621  uncalibrated 4.61°  calibrated 3.76°
-   10-20  deg  n=374369  uncalibrated 4.77°  calibrated 3.98°
-   20-180 deg  n=191310  uncalibrated 5.20°  calibrated 4.69°
+    0-5   deg  n=169299  uncalibrated 4.64°  offset 3.78°  affine 13 3.80°
+    5-10  deg  n=279328  uncalibrated 4.70°  offset 3.79°  affine 13 3.74°
+   10-20  deg  n=389002  uncalibrated 4.72°  offset 3.75°  affine 13 3.70°
+   20-180 deg  n=199436  uncalibrated 5.15°  offset 4.65°  affine 13 4.69°
