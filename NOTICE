@@ -1,0 +1,10 @@
+GazeMap
+Copyright 2026 Fuad Mammadov
+https://github.com/fammad/GazeMap
+
+This product includes software developed by Fuad Mammadov.
+Licensed under the Apache License, Version 2.0 (see LICENSE).
+
+The trained model weights distributed in the "models" release are derived
+from the MPIIGaze dataset (Zhang, Sugano, Fritz and Bulling, MPI Informatics)
+and are provided under CC BY-NC-SA 4.0, for non-commercial use only.

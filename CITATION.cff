@@ -1,0 +1,31 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+title: "GazeMap: Webcam Eye Tracking and Attention Heatmaps"
+type: software
+authors:
+  - family-names: Mammadov
+    given-names: Fuad
+repository-code: "https://github.com/fammad/GazeMap"
+url: "https://github.com/fammad/GazeMap"
+license: Apache-2.0
+date-released: 2026-10-18
+keywords:
+  - gaze estimation
+  - eye tracking
+  - webcam
+  - attention heatmap
+  - MPIIGaze
+references:
+  - type: article
+    title: "MPIIGaze: Real-World Dataset and Deep Appearance-Based Gaze Estimation"
+    authors:
+      - family-names: Zhang
+        given-names: Xucong
+      - family-names: Sugano
+        given-names: Yusuke
+      - family-names: Fritz
+        given-names: Mario
+      - family-names: Bulling
+        given-names: Andreas
+    journal: "IEEE Transactions on Pattern Analysis and Machine Intelligence"
+    year: 2019

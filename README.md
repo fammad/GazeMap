@@ -1,9 +1,11 @@
 # GazeMap: Webcam Eye Tracking and Attention Heatmaps
 
-[![Python](https://img.shields.io/badge/Python-3-3776AB?logo=python&logoColor=white)](https://www.python.org/)
+[![Python](https://img.shields.io/badge/Python-3.14-3776AB?logo=python&logoColor=white)](https://www.python.org/)
 [![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?logo=pytorch&logoColor=white)](https://pytorch.org/)
 [![OpenCV](https://img.shields.io/badge/OpenCV-5C3EE8?logo=opencv&logoColor=white)](https://opencv.org/)
 [![MediaPipe](https://img.shields.io/badge/MediaPipe-0097A7?logo=google&logoColor=white)](https://ai.google.dev/edge/mediapipe)
+[![Dataset: MPIIGaze](https://img.shields.io/badge/dataset-MPIIGaze-2EA44F)](https://www.mpi-inf.mpg.de/departments/computer-vision-and-machine-learning/research/gaze-based-human-computer-interaction/appearance-based-gaze-estimation-in-the-wild)
+[![License: Apache 2.0](https://img.shields.io/badge/license-Apache%202.0-blue)](LICENSE)
 
 <img src="assets/demo_pedestrians.gif" width="100%" alt="Gaze trail over a street scene, next to the webcam image it comes from">
 
@@ -86,20 +88,6 @@ The demo number is the same-session accuracy for one user; the LOPO numbers are 
 
 Image conditions are synthetic, applied to each held-out person with no retraining. Head-pose bins are checked within each person: turned samples (≥25°) were worse than frontal (<10°) for 12 of 15 people, so the effect is not just harder people sitting more turned.
 
-### Ablation
-
-One change at a time, same LOPO protocol, right-eye MAE so every row is comparable:
-
-| Change | MAE | Δ | People improved |
-|---|---|---|---|
-| Baseline: small CNN (8/16/16), right eye, 5 epochs | 6.34° | | |
-| Train on both eyes | 6.28° | −0.06° | 9/15 |
-| Wider network (20/50/500) | **5.98°** | **−0.30°** | **12/15** |
-| Head pose as input | 5.95° | −0.03° | 8/15 |
-| 15 epochs, lr drop | 5.90° | −0.05° | 8/15 |
-
-Only the wider network clears the noise (about 2.5 standard errors of the paired difference). From epoch 5 to 15, training loss fell about 40% while test MAE stayed flat: the limit is variation between people, not training time.
-
 ### Comparison with published results
 
 Zhang et al. (TPAMI 2019) report LOPO MAE of 6.3° for MnistNet and 5.5° for GazeNet (VGG-16, ImageNet-pretrained). GazeMap's 6.03° uses the MnistNet layout but trains on all frames (~400k eye images per fold) instead of the paper's 3,000 per person (42k per fold), so it is not a like-for-like comparison.
@@ -149,4 +137,24 @@ Tips: sit about 70 cm from the screen with light on your face, and calibrate aga
 
 ## Credits
 
-MPIIGaze dataset: Zhang, Sugano, Fritz and Bulling ([paper](https://arxiv.org/abs/1711.09017)). Face landmarks: Google MediaPipe. Paintings: public domain, via Wikimedia Commons. MIT License.
+MPIIGaze dataset: Zhang, Sugano, Fritz and Bulling ([paper](https://arxiv.org/abs/1711.09017)). Face landmarks: Google MediaPipe. Paintings: public domain, via Wikimedia Commons.
+
+## License
+
+- **Code:** [Apache License 2.0](LICENSE). If you use or redistribute it, keep the [NOTICE](NOTICE) file, which credits the author.
+- **Trained models:** CC BY-NC-SA 4.0, the same terms as the MPIIGaze dataset they were trained on (non-commercial use only).
+
+## Citation
+
+If GazeMap helps your work, please cite it:
+
+```bibtex
+@software{mammadov_gazemap_2026,
+  author = {Mammadov, Fuad},
+  title  = {GazeMap: Webcam Eye Tracking and Attention Heatmaps},
+  year   = {2026},
+  url    = {https://github.com/fammad/GazeMap}
+}
+```
+
+GitHub's "Cite this repository" button gives the same in other formats.

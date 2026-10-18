@@ -51,7 +51,7 @@ LANDMARKER_PATH = Path("face_landmarker.task")
 LANDMARKER_URL = ("https://storage.googleapis.com/mediapipe-models/face_landmarker/"
                   "face_landmarker/float16/1/face_landmarker.task")
 CALIBRATION_PATH = Path("calibration.json")
-MODELS_URL = "https://github.com/fammad/GazeMap/releases/download/models/gazemap_models.zip"
+MODELS_URL = "https://github.com/fammad/GazeMap/releases/latest/download/gazemap_models.zip"
 HEATMAP_DIR = Path("heatmaps")
 HEAT_SCALE = 8  # the heat grid is 1/8 of the window resolution
 TRAIL_SECONDS = 1.0  # video mode: how much recent gaze the trail shows
