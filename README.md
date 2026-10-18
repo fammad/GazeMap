@@ -9,7 +9,8 @@
 
 <img src="assets/demo_pedestrians.gif" width="100%" alt="Gaze trail over a street scene, next to the webcam image it comes from">
 
-<sub>Left: where I looked in the last second. The yellow disc is the model's uncertainty. Right: the only input, a laptop webcam.</sub>
+
+
 
 GazeMap turns a laptop webcam into a simple eye tracker. A neural network trained on the MPIIGaze dataset estimates where each eye is looking. After a one-minute calibration, it maps your gaze to the screen and shows where you looked on any image or video. Everything runs on your own computer.
 
@@ -44,7 +45,7 @@ MediaPipe finds the eye and mouth corners, a 3D face model gives the head pose, 
 
 <img src="assets/demo_driving.gif" width="100%" alt="Gaze trail over driving footage">
 
-**Driving footage:** where the eyes were when something happened on the road. A research demo, not a driver monitoring system.
+**Driving footage:** where the eyes were when something happened on the road. As a research demo.
 
 ## Results
 
